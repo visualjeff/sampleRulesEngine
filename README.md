@@ -33,6 +33,8 @@ node index.js
 ```
 
 ## Sample Output (JSON is updated by rules engine)
+
+Rules engine added a mood property and goWalking property because the rules were satisfied
 ```
 { 
   user: { 
@@ -50,6 +52,16 @@ node index.js
 ```
 
 ## Rules reside in the directory ./rules and are JSON files.
+```
+{
+  "name": "mood is great if 200 stars or more",
+  "when": (facts) => facts.user.stars >= 200,
+  "then": (facts) => {
+    facts.user.mood = 'great';
+  }
+}
+```
+
 ```
 {
   "name": "go for a walk if mood is great and the weather is fine",
