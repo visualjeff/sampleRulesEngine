@@ -17,7 +17,7 @@ npm install
 node index.js
 ```
 
-## Sample input
+## Sample input (in index.js)
 ```
 {
   user: {
@@ -47,4 +47,9 @@ node index.js
   },
   goWalking: true 
 }
+```
+
+## Rules reside in the directory ./rules and are JSON files.
+```
+
 ```
