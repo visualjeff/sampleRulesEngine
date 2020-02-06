@@ -4,7 +4,7 @@ Project uses (https://www.npmjs.com/package/rools)[https://www.npmjs.com/package
 
 ## Pre-req
 
-Nodejs v10.x.x and above
+(Nodejs)[https://nodejs.org/en/] v10.x.x and above
 
 ## Setup
 
