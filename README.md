@@ -1,10 +1,10 @@
 # Sample implementation of a rules engine
 
-Project uses (https://www.npmjs.com/package/rools)[https://www.npmjs.com/package/rools] for the rules engine.
+Project uses [https://www.npmjs.com/package/rools](https://www.npmjs.com/package/rools) for the rules engine.
 
 ## Pre-req
 
-(Nodejs)[https://nodejs.org/en/] v10.x.x and above
+[Nodejs](https://nodejs.org/en/) v10.x.x and above
 
 ## Setup
 
