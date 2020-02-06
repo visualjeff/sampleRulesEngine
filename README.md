@@ -4,7 +4,9 @@ Project uses [https://www.npmjs.com/package/rools](https://www.npmjs.com/package
 
 ## Pre-req
 
-[Nodejs](https://nodejs.org/en/) v10.x.x and above
+[Nodejs](https://nodejs.org/en/) v10.x.x and above.
+
+NOTE: To run on Windows 10 using git bash session.
 
 ## Setup
 
