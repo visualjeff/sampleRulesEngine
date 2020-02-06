@@ -63,3 +63,9 @@ node index.js
   }
 }
 ```
+
+## TODO
+1. Autoreload rules when changed
+2. Proper error handling and logging
+3. Benchmark performance
+4. Create a test suite
