@@ -51,5 +51,15 @@ node index.js
 
 ## Rules reside in the directory ./rules and are JSON files.
 ```
-
+{
+  "name": "go for a walk if mood is great and the weather is fine",
+  "when": [
+    (facts) => facts.user.mood === 'great',
+    (facts) => facts.weather.temperature >= 20,
+    (facts) => !facts.weather.rainy
+  ],
+  "then": (facts) => {
+    facts.goWalking = true;
+  }
+}
 ```
