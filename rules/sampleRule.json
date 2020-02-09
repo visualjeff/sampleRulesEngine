@@ -1,0 +1,10 @@
+{
+  "name": "Add member to group rule",
+  "when": [
+    (facts) => facts.category === 'UserManagement',
+    (facts) => /yahoo.com\s*$/.test(facts.initiatedBy.user.userPrincipalName) ? true : false,
+  ],
+  "then": (facts) => {
+    facts.IAM_approved = true
+  }
+}
