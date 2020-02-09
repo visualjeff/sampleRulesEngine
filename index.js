@@ -9,7 +9,7 @@ let time = process.hrtime();
 const payloadSize = 10000;
 const payload = Guber.generateFakePayload(payloadSize);
 let diff = process.hrtime(time);
-console.log(`Generated ${payload.length} records took ${diff[0] * NS_PER_SEC + diff[1]} nanoseconds`);
+console.log(`Generated ${payload.length} records took ${(diff[0]*1000) + (diff[1] / 1000000)}ms`);
 // End of generating fake data
 
 
@@ -34,7 +34,7 @@ async function asyncForEach(array, callback) {
 //Iterates over each record then prints results
 const init = async (payload) => {
   console.log();
-  console.log(`Starting process...`);
+  console.log(`Starting process records using rules engine...`);
 
   
   let time = process.hrtime();
@@ -51,7 +51,7 @@ const init = async (payload) => {
       passed++;
     }   
   });
-  console.log(`Total Processed Records: ${totalNumberOfRecords} took ${diff[0] * NS_PER_SEC + diff[1]} nanoseconds`);
+  console.log(`Total Processed Records: ${totalNumberOfRecords} took ${(diff[0]*1000) + (diff[1] / 1000000)}ms`);
   console.log(`  NOTE: ${passed} passed the rules`);
 }
 
