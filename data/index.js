@@ -25,7 +25,7 @@ Guber.prototype.generateFakePayload = (numberOfRecords, allowDuplicates = false,
     }, [])
 }
 
-//Stub out your fake record below
+//Stub out your fake OData record below
 const _generateRecord = () => {
     return {
         "id": faker.random.number(),

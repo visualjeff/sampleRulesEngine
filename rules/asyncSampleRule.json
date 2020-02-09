@@ -1,0 +1,27 @@
+{
+  "name": "Add member to group rule",
+  "when": [
+    (facts) => facts.category === 'UserManagement',
+    (facts) => /yahoo.com\s*$/.test(facts.initiatedBy.user.userPrincipalName) ? true : false,
+    async (facts) => {
+      const axios = require('axios');
+      //Mapped to local JSONServier
+      axios.defaults.baseURL = 'http://localhost:3000';
+
+      //Uses currying to slow the response down from the server for development.
+      //  first parameter is ms then we add on the response as the second parameter.
+      const sleep = (ms) => (response) => new Promise(resolve => setTimeout(() => resolve(response), ms));
+      const delay = 500;
+
+      const response = await axios.get('/posts').then(sleep(delay)).then((response) => response.statusText);
+      if (response === 'ok') {
+        return true;
+      } else {
+        return false;
+      }
+    } 
+  ],
+  "then": (facts) => {
+    facts.IAM_approved = true
+  }
+}

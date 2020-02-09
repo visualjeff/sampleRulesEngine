@@ -2,17 +2,18 @@
 
 const { Guber } = require('./data/index');
 const { validate } = require('./lib/index');
+const chalk = require('chalk');
 
 // Generating fake data for rules engine.  To capture performance we're going use hrtime (node's process high resolution time)
-const NS_PER_SEC = 1e9;
 let time = process.hrtime();
 const payloadSize = 10000;
 const payload = Guber.generateFakePayload(payloadSize);
 let diff = process.hrtime(time);
-console.log(`Generated ${payload.length} records took ${(diff[0]*1000) + (diff[1] / 1000000)}ms`);
+console.log(`Generated ${chalk.green(payload.length)} unique records took ${chalk.green((diff[0]*1000) + (diff[1] / 1000000))} ms`);
 // End of generating fake data
 
 
+//Function captures metrics from rules engine
 function Metrics(results) {
   Metrics.results.push(results);
 }
@@ -20,6 +21,7 @@ function Metrics(results) {
 Metrics.results = [];
 
 
+//Invoke validate and capture the resulting metrics
 const validateRecord = async (facts) => {
   Metrics(await validate(facts));
 };
@@ -31,11 +33,10 @@ async function asyncForEach(array, callback) {
   }
 }
 
-//Iterates over each record then prints results
+//Iterates over records then print results (including metrics)
 const init = async (payload) => {
   console.log();
-  console.log(`Starting process records using rules engine...`);
-
+  console.log(`Starting process to run ${chalk.green(payloadSize)} records through the rules engine...`);
   
   let time = process.hrtime();
   await asyncForEach(payload, validateRecord);
@@ -51,8 +52,9 @@ const init = async (payload) => {
       passed++;
     }   
   });
-  console.log(`Total Processed Records: ${totalNumberOfRecords} took ${(diff[0]*1000) + (diff[1] / 1000000)}ms`);
-  console.log(`  NOTE: ${passed} passed the rules`);
+  console.log('');
+  console.log(`Processing of ${chalk.green(totalNumberOfRecords)} records took ${chalk.green((diff[0]*1000) + (diff[1] / 1000000))} ms`);
+  console.log(`  NOTE: ${chalk.green(passed)} passed the rules`);
 }
 
 //Main entry point
