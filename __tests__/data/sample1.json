@@ -1,0 +1,11 @@
+{
+  "user": {
+    "name": "frank",
+    "stars": 347
+  },
+  "weather": {
+    "temperature": 20,
+    "windy": true,
+    "rainy": false
+  }
+}

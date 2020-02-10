@@ -8,7 +8,19 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)+(test).[jt]s?(x)"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "__tests__/coverage/reports",
+    "collectCoverageFrom": [
+      "**/lib/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -16,6 +28,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chalk": "^3.0.0",
+    "jest": "^25.1.0",
     "rools": "^2.2.7",
     "serialize-javascript": "^2.1.2"
   },
