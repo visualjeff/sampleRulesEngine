@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint ./lib/index.js",
+    "lint": "node ./node_modules/eslint/bin/eslint ./lib/index.js",
+    "doc": "node ./node_modules/.bin/jsdoc -c .jsdocrc  ./lib/index.js ./README.md",
     "test": "jest"
   },
   "jest": {
@@ -29,12 +30,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chalk": "^3.0.0",
-    "jest": "^25.1.0",
-    "rools": "^2.2.7",
-    "serialize-javascript": "^2.1.2"
+    "rools": "^2.2.7"
   },
   "devDependencies": {
+    "jest": "^25.1.0",
     "eslint": "^6.8.0",
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "jsdoc": "^3.6.3"
   }
 }
