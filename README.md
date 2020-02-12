@@ -6,80 +6,37 @@ Project uses [https://www.npmjs.com/package/rools](https://www.npmjs.com/package
 
 [Nodejs](https://nodejs.org/en/) v10.x.x and above.
 
-NOTE: To run on Windows 10 use Git Bash session.
+NOTE: On Windows 10 device use a Git Bash session to run the commands below.  Additionally if you're using a corporate device you'll be challenged by the corporate proxy when installing dependencies.  The following npm commands will resolve this issue:
 
-## Setup
+```
+npm config set registry http://registry.npmjs.org/
+npm config set strict-ssl false
+```
+
+## Setup (install dependencies)
 
 ```
 npm install
 ```
 
-## Running
+## Running (exercise the rules engine)
 ```
-node index.js
-```
-
-## Sample input (in index.js)
-```
-{
-  user: {
-    name: 'frank',
-    stars: 347
-  },
-  weather: {
-    temperature: 20,
-    windy: true,
-    rainy: false
-  }
-}
+npm start
 ```
 
-## Sample Output (JSON is updated by rules engine)
-
-Rules engine added a mood property and goWalking property because the rules were satisfied
-```
-{ 
-  user: { 
-    name: 'frank', 
-    stars: 347, 
-    mood: 'great'
-  },
-  weather: { 
-    temperature: 20, 
-    windy: true, 
-    rainy: false 
-  },
-  goWalking: true 
-}
-```
-
-## Rules reside in the directory ./rules and are JSON files.
-```
-{
-  "name": "mood is great if 200 stars or more",
-  "when": (facts) => facts.user.stars >= 200,
-  "then": (facts) => {
-    facts.user.mood = 'great';
-  }
-}
-```
+## Testing (run the test suite)
 
 ```
-{
-  "name": "go for a walk if mood is great and the weather is fine",
-  "when": [
-    (facts) => facts.user.mood === 'great',
-    (facts) => facts.weather.temperature >= 20,
-    (facts) => !facts.weather.rainy
-  ],
-  "then": (facts) => {
-    facts.goWalking = true;
-  }
-}
+npm test
 ```
+
+
+## FAQ
+
+Rules reside in the ./rules directory.
+
+The Rules engine resides in the ./lib directory.
+
 
 ## TODO
-1. Autoreload rules when changed
-2. Proper error handling and logging
-3. Benchmark performance
-4. Create a test suite
+1. Reload rules while validations are in flight.
