@@ -1,7 +1,8 @@
 'use strict';
 
 const { Guber } = require('./data/index');
-const { validate } = require('./lib/index');
+const rulesEngine = require('./lib/index');
+
 const chalk = require('chalk');
 
 // Generating fake data for rules engine.  To capture performance we're going use hrtime (node's process high resolution time)
@@ -23,7 +24,7 @@ Metrics.results = [];
 
 //Invoke validate and capture the resulting metrics
 const validateRecord = async (facts) => {
-  Metrics(await validate(facts));
+  Metrics(await rulesEngine.validate(facts));
 };
 
 //Custom async forEach function
