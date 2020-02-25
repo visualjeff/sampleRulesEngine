@@ -1,0 +1,9 @@
+{
+  "name": "noop rule",
+  "when": [
+    (facts) => return true,
+  ],
+  "then": (facts) => {
+    facts.rools_engine_result = true
+  }
+}
