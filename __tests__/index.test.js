@@ -18,6 +18,13 @@ describe('Tesing rules engine', () => {
     expect(testData.user.mood).toBe('great');
     expect(testData.goWalking).toBeTruthy();    
   });
+  it('Testing happy path noopRule', async () => {
+    rulesEngine.setRules(['./__tests__/rules/noopRule.json']);
+    let testData = fs.readFileSync('./__tests__/data/sample2.json');
+    testData = JSON.parse(testData);
+    await rulesEngine.validate(testData);
+    expect(testData.rools_engine_result).toBeTruthy();
+  });
   it('Testing setting rules and getting rules', () => {
     const newRules = ['./__tests__/rules/sample1a.json', './__tests__/rules/sample1b.json'];
     rulesEngine.setRules(newRules);
