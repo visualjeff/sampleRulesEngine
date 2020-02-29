@@ -1,5 +1,6 @@
 {
   "name": "Add member to group rule",
+
   "when": [
     (facts) => facts.category === 'UserManagement',
     (facts) => /yahoo.com\s*$/.test(facts.initiatedBy.user.userPrincipalName) ? true : false,
@@ -8,7 +9,7 @@
       //Mapped to local JSONServier
       axios.defaults.baseURL = 'http://localhost:3000';
 
-      //Uses currying to slow the response down from the server for development.
+      //Uses currying to SLOW the response down from the server for development.  Remove for other environments.
       //  first parameter is ms then we add on the response as the second parameter.
       const sleep = (ms) => (response) => new Promise(resolve => setTimeout(() => resolve(response), ms));
       const delay = 500;
@@ -21,7 +22,26 @@
       }
     } 
   ],
+
   "then": (facts) => {
-    facts.IAM_approved = true
+    //Do something like use the ldap client to talk to AD
+    const ldap = require('ldapjs');    
+    
+    /* client example code below...
+    const client = ldap.createClient({
+      url: 'ldap://127.0.0.1:1389'
+    });
+
+    client.bind('cn=root', 'secret', function(err) {
+      assert.ifError(err);
+    });
+    */    
+
+    //Update facts that it was processed or not processed successfully.
+    const date = new Date();
+    facts.rulesEngineResults = {
+      processedAt: date.toISOString(),
+      returnValue: 'Return value from AD'
+    }
   }
 }
