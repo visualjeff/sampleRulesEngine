@@ -4,6 +4,10 @@
     (facts) => { return true }
   ],
   "then": (facts) => {
-    facts.rools_engine_result = true;
+     const date = new Date();
+     facts.rulesEngineResults = {
+       processedAt: date.toISOString(),
+       returnValue: 'Return value from AD'
+     }
   }
 }

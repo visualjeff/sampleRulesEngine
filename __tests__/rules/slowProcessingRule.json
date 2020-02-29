@@ -1,10 +1,11 @@
 {
-  "name": "noop rule",
+  "name": "slow processing rule",
   "when": [
     (facts) => { return true }
   ],
-  "then": (facts) => {
+  "then": async (facts) => {
      const date = new Date();
+     await new Promise(resolve => setTimeout(resolve, 1000));
      facts.rulesEngineResults = {
        processedAt: date.toISOString(),
        returnValue: 'Return value from AD'
